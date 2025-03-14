@@ -15,7 +15,13 @@ final class RightOnTargetViewController: UIViewController {
     private let desiredValueSlider = UISlider()
     private let checkValueButton = UIButton()
     
-    private let missingValueText: String = "The value is still missing"
+    private lazy var value = 0
+    private lazy var round = 0
+    private lazy var points = 0
+    private lazy var result = 0
+    private let maxRoundValue = 10
+    
+    private let missingValueText = "The value is still missing"
     
     
     // MARK: - View Lyfecycle
@@ -28,6 +34,12 @@ final class RightOnTargetViewController: UIViewController {
         getValueLabel()
         getValueSlider()
         getCheckedButton()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(false)
+        
+        showAlertController(title: "New game", message: "Try to get less than \(maxRoundValue) points. To start a game press \"Start game\"")
     }
     
     
@@ -84,6 +96,7 @@ final class RightOnTargetViewController: UIViewController {
         checkValueButton.titleLabel?.font = .boldSystemFont(ofSize: 14)
         
         view.addSubview(checkValueButton)
+        checkValueButton.addTarget(self, action: #selector(getResultButton), for: .touchUpInside)
         checkValueButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -92,6 +105,47 @@ final class RightOnTargetViewController: UIViewController {
             checkValueButton.widthAnchor.constraint(equalToConstant: 175),
             checkValueButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+        
+    }
+    
+    @objc func getResultButton() {
+        
+        switch round {
+        case 0:
+            value = Int.random(in: Int(desiredValueSlider.minimumValue)...Int(desiredValueSlider.maximumValue))
+            desiredValueLabel.text = value.formatted()
+            
+
+            checkValueButton.setTitle("Check value", for: .normal)
+            round = 1
+        case 1 ..< 5:
+            points = abs(value - Int(desiredValueSlider.value))
+            result += points
+        
+            value = Int.random(in: Int(desiredValueSlider.minimumValue)...Int(desiredValueSlider.maximumValue))
+            desiredValueLabel.text = value.formatted()
+        
+            round += 1
+        default:
+            result <= maxRoundValue ? showAlertController(title: "Game over", message: "You win! Your final result is \(result)") :
+                                      showAlertController(title: "Game over", message: "You lose! Your final result is \(result)")
+            round = 0
+            result = 0
+            desiredValueLabel.text = 0.formatted()
+            checkValueButton.setTitle("Start game", for: .normal)
+            desiredValueLabel.text = missingValueText
+        }
+        
+    }
+    
+    private func showAlertController(title: String, message: String) {
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+        
     }
 
 }

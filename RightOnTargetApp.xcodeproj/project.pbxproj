@@ -11,7 +11,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		592787502D83B7AE0048E437 /* Exceptions for "RightOnTargetApp" folder in "RightOnTargetApp" target */ = {
+		598524482D91E2390066122B /* Exceptions for "RightOnTargetApp" folder in "RightOnTargetApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -21,10 +21,10 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		592787402D83B7AD0048E437 /* RightOnTargetApp */ = {
+		598524422D91E2390066122B /* RightOnTargetApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				592787502D83B7AE0048E437 /* Exceptions for "RightOnTargetApp" folder in "RightOnTargetApp" target */,
+				598524482D91E2390066122B /* Exceptions for "RightOnTargetApp" folder in "RightOnTargetApp" target */,
 			);
 			path = RightOnTargetApp;
 			sourceTree = "<group>";
@@ -45,7 +45,7 @@
 		592787352D83B7AD0048E437 = {
 			isa = PBXGroup;
 			children = (
-				592787402D83B7AD0048E437 /* RightOnTargetApp */,
+				598524422D91E2390066122B /* RightOnTargetApp */,
 				5927873F2D83B7AD0048E437 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -74,7 +74,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				592787402D83B7AD0048E437 /* RightOnTargetApp */,
+				598524422D91E2390066122B /* RightOnTargetApp */,
 			);
 			name = RightOnTargetApp;
 			packageProductDependencies = (
